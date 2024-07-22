@@ -1,48 +1,75 @@
 package com.example.project.model;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;;
-@Document(collection = "projects")
+import jakarta.persistence.*;
+import java.util.Set;
+
+@Entity
 public class Project {
     @Id
-    private String id ;
-    private String name ; 
-    private String descrption ;
-    private String creationTime ;
-    private User owner ;
-    public String getId() {
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id; 
+
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "creationTime")
+    private String creationTime;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User owner;
+
+    @OneToMany(mappedBy = "project")
+    private Set<Cohort> cohorts;
+
+    public Long getId() {
         return id;
     }
-    public void setId(String id) {
+
+    public void setId(Long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
-    public String getDescrption() {
-        return descrption;
+
+    public String getDescription() {
+        return description;
     }
-    public void setDescrption(String descrption) {
-        this.descrption = descrption;
+
+    public void setDescription(String description) {
+        this.description = description;
     }
+
     public String getCreationTime() {
         return creationTime;
     }
+
     public void setCreationTime(String creationTime) {
         this.creationTime = creationTime;
     }
+
     public User getOwner() {
         return owner;
     }
+
     public void setOwner(User owner) {
         this.owner = owner;
-    } 
+    }
 
+    public Set<Cohort> getCohorts() {
+        return cohorts;
+    }
 
-    
-
-    
+    public void setCohorts(Set<Cohort> cohorts) {
+        this.cohorts = cohorts;
+    }
 }

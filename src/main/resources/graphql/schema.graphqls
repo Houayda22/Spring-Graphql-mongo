@@ -1,0 +1,20 @@
+scalar Long
+
+type User {
+    id: ID!
+    username: String!
+    phone: String!
+}
+
+type Query {
+    findAllUsers: [User]!
+    getUsers: [User]!
+}
+
+type Mutation {
+    newUser(username: String!, phone: String!): User
+    updateUser(id: ID!, username: String!, phone: String!): User
+    deleteUser(id: ID!): Boolean
+}
+
+

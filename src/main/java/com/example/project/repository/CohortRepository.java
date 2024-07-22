@@ -1,9 +1,8 @@
 package com.example.project.repository;
 
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.project.model.Cohort;
-@EnableMongoRepositories
-public interface CohortRepository extends MongoRepository<Cohort,String>{
+
+public interface CohortRepository extends JpaRepository<Cohort,Long>{
     
 }
